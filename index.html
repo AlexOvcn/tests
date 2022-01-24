@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>TEST</title>
+</head>
+<body>
+    <section class="table-root">
+        <div class="controlPanel">
+            <p>Элементы управления:</p>
+            <div class="controlPanel-sorting">
+                <select id="sortSelect" class="controlPanel-sorting__select">
+                    <option value="firstName">Имя</option>
+                    <option value="lastName">Фамилия</option>
+                    <option value="about">Описание</option>
+                    <option value="eyeColor">Цвет глаз</option>
+                </select>
+                <input type="text" id="sortInput" class="controlPanel-sorting__input" placeholder="Искомое значение"/>
+                <button class="controlPanel-sorting__button" onpointerdown="setSortingRows()">Отсортировать</button>
+                <button class="controlPanel-sorting__button" onpointerdown="recoveryAfterSorting()">X</button>
+            </div>
+            <div class="controlPanel-showingColumns">
+                <label>
+                    <span>Имя</span>
+                    <input type="checkbox" id="column_check1" onchange="columnCheckboxes(1)" checked>
+                </label>
+                <label>
+                    <span>Фамилия</span>
+                    <input type="checkbox" id="column_check2" onchange="columnCheckboxes(2)" checked>
+                </label>
+                <label>
+                    <span>Описание</span>
+                    <input type="checkbox" id="column_check3" onchange="columnCheckboxes(3)" checked>
+                </label>
+                <label>
+                    <span>Цвет глаз</span>
+                    <input type="checkbox" id="column_check4" onchange="columnCheckboxes(4)" checked>
+                </label>
+            </div>
+        </div>
+        <table class="table">
+            <thead class="table-head" id="table_head">
+                <tr class="table-head__row">
+                    <!-- Здесь генерируется HTML -->
+                </tr>
+            </thead>
+            <tbody class="table-body" id="table_body">
+                <!-- Здесь генерируется HTML -->
+            </tbody>
+        </table>
+        <div class="table-empty">
+            <!-- Здесь генерируется HTML -->
+        </div>
+        <div class="pagination">
+            <!-- Здесь генерируется HTML -->
+        </div>
+    </section>
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
