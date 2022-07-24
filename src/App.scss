@@ -1,0 +1,371 @@
+.App {
+  min-height: 100vh;
+  width: 100%;
+  text-align: center;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #F7E2E1;
+  transition: 0.5s;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff383b;
+  border-radius: 9em;
+  box-shadow: inset 1px 1px 5px #ebffff;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  background: #92DAD9; 
+  box-shadow: inset 0 -5px 10px #DCEBEB;
+  height: 50px;
+  @at-root {
+    .header {
+      &-controlPanel {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100px;
+        transition: 0.4s;
+        cursor: pointer;
+        > div {
+          background-size: contain;
+          width: 40px;
+          height: 40px;
+        }
+        > div:hover {
+          filter: drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.5) );
+          transform: scale(1.05,1.05);
+        }
+        > div:active {
+          transform: scale(0.95,0.95);
+        }
+        &__addCard {
+          background-image: url('img/plus.svg');
+        }
+        &__help {
+          background-image: url('img/help.svg');
+        }
+      }
+    }
+  }
+}
+
+.container {
+  padding: 0 8%;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0 15px;
+  background: #ECA4A4;
+  box-shadow: inset 0 10px 15px #F7E2E1;
+  min-height: calc(100vh - 50px);
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 5px;
+  flex-grow: 1;
+  border-radius: 10px;
+  box-shadow: inset 0 10px 20px rgba(0,0,0,0.4);
+  transition: 0.8s;
+  border: solid 1px rgb(87, 87, 87);
+  &-parent {
+    margin-bottom: 10px;
+    flex-grow: 0;
+    height: 0;
+  }
+  &-background {
+    &__0 {
+      background-color: #ececec;
+    }
+    &__1 {
+      background-color: #c7eaea;
+    }
+    &__2 {
+      background-color: #aaecec;
+    }
+  }
+  &-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 7px;
+    &__title {
+      flex-grow: 1;
+      margin: 0 7px 5px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: pointer
+    }
+    &__menu {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background-image: url('img/card-menu.svg');
+      background-repeat: no-repeat;
+      cursor: pointer;
+      transition: 0.1s;
+      right: 7px;
+      top: 7px;
+    }
+    &__menu:hover {
+      transform: scale(1.08,1.08);
+    }
+  }
+  @at-root {
+    @media screen and (max-width: 992px) and (min-width: 768px) {
+      .card {
+        &-header {
+          padding: 0.1vw 7px;
+          &__title {
+            font-size: 2.3vw;
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 768px) and (min-width: 576px)  {
+      .card {
+        &-header {
+          padding: 0.7vw 7px;
+          &__title {
+            font-size: 2.1vw;
+          }
+        }
+      }
+    }
+  }
+}
+
+.loader {
+  margin: 15px 0;
+  &-text {
+    font-family: 'Lora', serif;
+    color: rgb(0, 0, 106);
+  }
+}
+
+.popup-menu {
+  position: absolute;
+  background-color: aliceblue;
+  padding: 10px 35px 15px 15px;
+  border-radius: 6px;
+  animation: AnimPopupMenu 0.5s forwards;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7), inset 0 0 10px rgba(0,0,0,0.4);
+  @at-root {
+    @keyframes AnimPopupMenu {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      };
+      to {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+  }
+  &__cross {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 25px;
+    height: 25px;
+    background-image: url('img/cross.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  &__cross:hover {
+    transform: scale(1.07,1.07);
+    cursor: pointer;
+  }
+  @at-root {
+    .settingsCardMenu {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      &-title {
+        margin-bottom: 15px;
+      }
+      &-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 7px;
+        &__title {
+          margin-right: 10px;
+          padding-bottom: 6px;
+        }
+        &__body {
+          transition: 0.3s;
+        }
+      }
+      &-item:last-of-type {
+        margin-bottom: 15px;
+      }
+      &-acceptButton {
+        align-self: center;
+        flex-shrink: 1;
+      }
+    }
+    .helpMenu {
+      &-title {
+        margin: 0 auto 15px;
+      }
+      &-elem {
+        display: flex;
+        align-items: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: 0 0 7px 10px;
+        padding-left: 25px;
+        height: 20px;
+        @at-root {
+          .icon-plus {
+            background-image: url('img/plus.svg');
+          }
+          .icon-cardMenu {
+            background-image: url('img/card-menu.svg');
+          }
+          .icon-fullName {
+            background-image: url('img/showFullName.svg');
+          }
+          .icon-dragAndDrop {
+            background-image: url('img/dragAndDrop.svg');
+          }
+        }
+      }
+    }
+    .fullNameCard-text {
+      font-weight: 600;
+    }
+  }
+}
+
+.input {
+  border: none;
+  border-bottom: solid 2px #eabfbf;
+  border-radius: 4px;
+  padding: 2px 7px;
+  outline: none;
+  &:focus {
+    border-bottom: solid 2px #ff383b;
+  }
+}
+
+.select {
+  border: none;
+  border-right: solid 2px #eabfbf;
+  border-radius: 4px;
+  padding: 2px 7px;
+  outline: none;
+  &:focus {
+    border-right: solid 2px #ff383b;
+  }
+}
+
+.customCheckbox {
+  &:focus-within > span {
+    border: solid 1px #de1b1e;
+  }
+  & > input {
+    display: none;
+    &:checked + span::before{
+      animation: check .4s ease-out;
+      animation-fill-mode: forwards;  
+    }
+  }
+  & > span {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: solid 1px #ECA4A4;
+    border-radius: 3px;
+    transition: 0.5s;
+    &::before {
+      content: "";
+      display: block;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('img/checkMark.svg');
+      background-repeat: no-repeat;
+      background-size: 70%;
+      background-position: center center;
+    }
+  }
+  @at-root {
+    @keyframes check {
+      from  {
+        opacity: 0;
+        background-size: 5%;
+      }
+      30% {
+        opacity: .4;
+        background-size: 70%;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+}
+.cardWillDelete {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.button {
+  border: none;
+  border-left: solid 2px #eabfbf;
+  border-right: solid 2px #eabfbf;
+  border-radius: 4px;
+  padding: 4px 10px;
+  outline: none;
+  cursor: pointer;
+  background-color: white;
+  transition: 0.3s;
+  &:hover {
+    border-left: solid 2px #ff383b;
+    border-right: solid 2px #ff383b;
+    padding: 4px 8px;
+    background-color: #F7E2E1;
+  }
+  &:active {
+    border-left: solid 2px #de1b1e;
+    border-right: solid 2px #de1b1e;
+    padding: 4px 4px;
+    background-color: #fabab6;
+    color: #3f0703;
+  }
+}
+
+.currentDraggableCard {
+  transform: scale(1.03,1.03);
+  background-color: #bef09b;
+  box-shadow: inset 0 10px 20px rgba(0,0,0,0.4), 0 10px 30px 10px rgba(0,0,0,0.2);
+}
+
+.hoverDropCard {
+  transform: scale(1.015,1.015);
+  background-color: #d6ecc7;
+  box-shadow: inset 0 10px 20px rgba(0,0,0,0.4), 0 10px 30px 10px rgba(0,0,0,0.15);
+  z-index: 999;
+}
