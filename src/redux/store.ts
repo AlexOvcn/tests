@@ -1,6 +1,7 @@
 import { configureStore, Middleware } from "@reduxjs/toolkit";
 import { cardsReducer } from "./slices/cardsSlice";
 import { popupMenuReducer } from "./slices/popupMenuSlice";
+import { otherParametersReducer } from "./slices/otherParametersSlice";
 
 const logger: Middleware = (store) => (next) => (action) => {
     console.groupCollapsed("Диспетчеризация действия: ", action.type);
@@ -15,7 +16,8 @@ export const setupStore = () => {
     return configureStore({
         reducer: {
             cardsContents: cardsReducer,
-            popupMenu: popupMenuReducer
+            popupMenu: popupMenuReducer,
+            otherParameters: otherParametersReducer
         },
         middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
     });

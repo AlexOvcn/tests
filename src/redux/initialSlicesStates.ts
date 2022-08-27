@@ -14,14 +14,18 @@ export namespace InterfacesOfInitialSlicesStates {
             left: number,
             top: number
         }
-        cardCoordinates?: [number|null, number|null]
+        cardCoordinates?: [number|null, number|null],
+    };
+    export interface IOtherParameters {
+        lastWidthOfWindow?: number
     }
 }
 
 //* интрефейс для initialSlicesStates
 interface IInitialSlicesStates {
     cardsSlice: InterfacesOfInitialSlicesStates.ICardsSlice,
-    popupMenuSlice: InterfacesOfInitialSlicesStates.IPopupMenuSlice
+    popupMenuSlice: InterfacesOfInitialSlicesStates.IPopupMenuSlice,
+    otherParameters: InterfacesOfInitialSlicesStates.IOtherParameters
 }
 
 //* начальные состояния для всех срезов в redux
@@ -41,5 +45,8 @@ export const initialSlicesStates: IInitialSlicesStates = {
             top: 0
         },
         cardCoordinates: [null, null]
+    },
+    otherParameters: {
+        lastWidthOfWindow: 0
     }
 }

@@ -1,6 +1,7 @@
 import React, { RefObject } from "react";
 import { cardsActions } from "./slices/cardsSlice";
 import { popupMenuActions } from "./slices/popupMenuSlice";
+import { otherParametersActions } from "./slices/otherParametersSlice";
 import { AppDispatch, AppStore } from "./store";
 
 //* интерфейс ключей для формы из настройки карточки
@@ -137,6 +138,11 @@ export const actions = {
     //* смена карт местами при перемещении (drag and drop)
     dragAndDropCard(cardDrop: number, cardReplace: number) {
         return cardsActions.dragAndDropCard({cardDrop, cardReplace});
+    },
+
+    //*  проверка изменения высоты окна браузера
+    changeWindowHeight(windowWidth: number) {
+        return otherParametersActions.changeWindowWidth({lastWidthOfWindow: windowWidth});
     }
 }
 
@@ -152,9 +158,12 @@ export const asyncСalculatingCardSize = (timeout_second: number, parentCardNumb
 //* события при изменении размеров экрана
 export const actionsOnTheResizeEvent = () => (dispatch: AppDispatch, getState: AppStore['getState']) => {
     window.addEventListener("resize", function() {
-        dispatch(actions.calculatingCardsSizes());
-        if (getState().popupMenu.active) {
-            dispatch(actions.hideAndCleanPopupMenu());
+        if (document.documentElement.clientWidth !== getState().otherParameters.lastWidthOfWindow) {
+            dispatch(actions.changeWindowHeight(document.documentElement.clientWidth))
+            dispatch(actions.calculatingCardsSizes());
+            if (getState().popupMenu.active) {
+                dispatch(actions.hideAndCleanPopupMenu());
+            }
         }
     });
 }
